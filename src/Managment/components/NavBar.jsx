@@ -10,21 +10,18 @@ export default function NavBar() {
   
   return (
     <AppBar
-      className="NavBar"
-      // style={{ backgroundColor: black }}
+      className="AppBar"
+      style={{ color: "white" }}
     >
       <Box sx={{ flexGrow: 1, display: 'flex' }}>
         <Box sx={{ m: 2, display: 'block' }}>
-          <NavLink to="/home">Home</NavLink>
+          <NavLink style={{ color: "white" }} to="/tables">Tables</NavLink>
         </Box>
         <Box sx={{ m: 2, display: 'block' }}>
-          <NavLink to="/login">Login</NavLink>
+          <NavLink style={{ color: "white" }} to="/orders">Orders</NavLink>
         </Box>
         <Box sx={{ m: 2, display: 'block' }}>
-          <NavLink to="/bitcoinrates">Bitcoin Rates</NavLink>
-        </Box>
-        <Box sx={{ m: 2, display: 'block' }}>
-          <NavLink to="/posts">Posts</NavLink>
+          <NavLink style={{ color: "white" }} to="/menu">Menu</NavLink>
         </Box>
       </Box>
       

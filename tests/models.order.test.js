@@ -18,7 +18,7 @@ describe('Orders', async () => {
   it('Init', async () => {
 
 
-    let placeJSON = {"Number":"110"};        
+    let placeJSON = {"Number":"120"};        
     const place = await Models.Place.create(placeJSON);
   
     
