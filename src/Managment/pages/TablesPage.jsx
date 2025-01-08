@@ -2,19 +2,32 @@
 import Box from '@mui/material/Box';
 import { useState, useEffect, useContext } from "react";
 import { TableView } from '../views/TableView';
-// const Controllers = require("../controllers");
 
 export default function TablesPage() { 
 
-    // const tables = Controllers.tableController.getTables();
+    console.log("TablesPage start");
+
+    let tables = [];
+
+    try
+    {
+        const Controllers = require("../controllers");
+
+        const tables = Controllers.tableController.getTables();
+    }
+    catch(err){
+        console.log(err.message);
+    }
+    
+
 
     
-    // const tableItems = tables?.map(table => (
-    //     <TableView
-    //     key={table.id} 
-    //     Number={table.Number}/>
-    //     )
-    // );
+    const tableItems = tables?.map(table => (
+        <TableView
+        key={table.id} 
+        Number={table.Number}/>
+        )
+    );
 
         
     
@@ -22,11 +35,11 @@ export default function TablesPage() {
     <Box className="HomePage" >
         <h1>Tables</h1>
     
-        {/* <dvi className="center">
+        <dvi className="center">
             <div >
                 {tableItems}
             </div>
-        </dvi> */}
+        </dvi>
     </Box>
     )
 }
