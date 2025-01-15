@@ -1,0 +1,116 @@
+
+body{
+  background-color:lightblue;
+}
+
+
+
+.tabPanel {
+  padding-top: 1rem;
+  padding-left: 1rem;
+  background-color: lightblue;
+}
+
+.tabContent {
+  padding: 2rem;
+  border-top: 0.01rem solid black;
+}
+
+
+.overlaycontainer {
+  position:relative;
+}
+
+.overlaytop {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: transparent;
+}
+
+.button {
+  background-color:transparent;
+  margin: 20em;
+  width: 40em;  
+  height:40em;
+  border: none;
+}
+
+.buttonSmall {
+  background-color:transparent;
+  width:  3em;  
+  height: 3em;
+  border: none;
+}
+
+.buttonRound {border-radius: 50%;}
+
+.border {
+  border: solid 1em black ;
+  margin: 0.5em;
+  padding: 1em;
+}
+
+.card-image {
+  margin: 1em;
+  object-fit: contain;
+  width: 20em;
+  height: 20em;
+}
+
+.right {
+  float: right;
+}
+
+.center {
+  float: left;
+}
+
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+}
+.column2 {
+  flex: 50%;
+}
+
+.formFont{
+  font-size: 2em;
+}
+
+.formBtnFont{
+  font-size: 0.75em;
+}
+
+.formCustomerFont{
+  font-size: 1.2em;
+}
+
+.horizontul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+.horizontli {
+  float: left;
+}
+
+.element1 {display:inline-block;margin-right:10px; width:200px; background-color:red;} 
+.element2 {display:inline-block; width:200px; background-color:red;} 
+
+.imageOpacity{
+  opacity: 0.5
+}
