@@ -19,23 +19,6 @@ init();
 Order.belongsTo(Place);
 Order_Dish.belongsTo(Dish);
 
-
-// Dish.belongsToMany(Order, {through: Order_Dish});
-// Order.belongsToMany(Dish, {through: Order_Dish});
-
-// Dish.belongsToMany(Order, {
-//   through: "order_dish",
-//   as: "orders",
-//   foreignKey: "dishId"
-// });
-
-// Order.belongsToMany(Dish, {
-//   through: "order_dish",
-//   as: "dishes",
-//   foreignKey: "orderId"
-// });
-
-
 module.exports = {
   Dish,
   Place,

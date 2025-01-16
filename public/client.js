@@ -3,6 +3,8 @@ let currentDishList = new Array();
 
 let placeId = 7;
 
+let orderPrice = 0;
+
 const searchParams = new URLSearchParams(window.location.search);
 
 if(searchParams.has('placeId'))
@@ -10,6 +12,8 @@ if(searchParams.has('placeId'))
 
 
 async function loadStripe() {
+
+  document.querySelector("#navbarToggle").click();
 
   // Load the publishable key from the server. The publishable key
   // is set in your .env file.
@@ -24,13 +28,23 @@ async function loadStripe() {
   const stripe = Stripe(publishableKey, {
     apiVersion: '2020-08-27',
   });
-    // On page load, we create a PaymentIntent on the server so that we have its clientSecret to
-  // initialize the instance of Elements below. The PaymentIntent settings configure which payment
-  // method types to display in the PaymentElement.
+    
+          
+  let dishList = "";
+
+  for(let dishID of currentDishList){
+
+    dishList += `,${dishID}`;
+  } 
+  
+  if(dishList){
+    dishList = dishList.substring(1);
+  }
+
   const {
     error: backendError,
     clientSecret
-  } = await fetch('/create-payment-intent').then(r => r.json());
+  } = await fetch(`/create-payment-intent?dishList=${dishList}`).then(r => r.json());
   if (backendError) {
     // addMessage(backendError.message);
   }
@@ -71,16 +85,15 @@ async function loadStripe() {
     });
 
     if (stripeError) {
-      addMessage(stripeError.message);
 
       // reenable the form.
       submitted = false;
+      
       form.querySelector('button').disabled = false;
+
       return;
     }
-    else{
-      await processCheckout();
-    }
+    
   });
   
 }
@@ -94,7 +107,7 @@ navbarToggle.addEventListener("click", () => {
 });
 
 async function processCheckout(){
-          
+              
   let dishList = "";
 
   for(let dishID of currentDishList){
@@ -105,7 +118,6 @@ async function processCheckout(){
   if(dishList){
     dishList = dishList.substring(1);
   }
-
 
   const data = JSON.stringify({"Email" : "you@server.com", "placeId" : placeId} );
       
@@ -126,8 +138,6 @@ async function processCheckout(){
   currentDishList = new Array();
 
   await updateBasketList();
-
-  document.querySelector("#navbarToggle").click();
 
 }
 
@@ -188,6 +198,8 @@ async function updateBasketList(){
 
   clearList('orderList');
 
+  orderPrice = 0;
+
   if(currentDishList.length == 0)
   {
     document.querySelector("#orderCount").innerHTML = "";
@@ -199,8 +211,6 @@ async function updateBasketList(){
   else{
     document.querySelector("#orderCount").style.display = 'block';
     document.querySelector("#orderCount").innerHTML = currentDishList.length;
-
-    let orderPrice = 0;
 
     currentDishList.forEach(async(DishID, index) =>{
 
@@ -252,8 +262,4 @@ async function removeOrder (index) {
   await updateBasketList();
   
 }
-
-
-loadStripe();
-
 loadDishes();

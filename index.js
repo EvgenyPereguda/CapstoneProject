@@ -1,7 +1,10 @@
 
 const app = require('./app');
+const stripe = require('./stripe');
 const port = 3000; // change this to run the app on a different port - usually a 4 digit number
 
+
+stripe.init();
 
 // const swaggerUi = require('swagger-ui-express');
 // swaggerDocument = require('./swagger.json');
