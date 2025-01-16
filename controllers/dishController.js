@@ -24,6 +24,18 @@ const getDishQuery = (req, res) => {
     });
 }
 
+const getDish = async (dishID) => {
+
+  let ldish = null;
+
+  await Models.Dish.findAll({where: { id: dishID}})
+  .then((data) => {
+    ldish = data;
+  })
+
+  return ldish;
+}
+
 
 const createDish = (req, res) => {
   Models.Dish.create(req.body)
@@ -69,6 +81,7 @@ const deleteDish = (req, res) => {
 module.exports = {
     getDishes,
     getDishQuery,
+    getDish,
     createDish,
     updateDish,
     deleteDish
