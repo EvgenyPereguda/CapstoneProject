@@ -1,21 +1,325 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <script type="module">
-      import RefreshRuntime from "/@react-refresh"
-      RefreshRuntime.injectIntoGlobalHook(window)
-      window.$RefreshReg$ = () => {}
-      window.$RefreshSig$ = () => (type) => type
-      window.__vite_plugin_react_preamble_installed__ = true
-      </script>
-      <script type="module" src="/@vite/client"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="radialMenu.css">
+</head>
+<body>
 
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="../src/Managment/main.jsx"></script>
+  <!-- Modal -->
+<div class="modal fade" id="addTableFormModal" tabindex="-1" aria-labelledby="addTableFormModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add new table form</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">        
+      <form class="formFont" id="addTableForm">
+        <div>
+          <label for="Name" class="form-label">Table number: </label>
+          <input type="number" class="form-control" name="Number" id="Number" value="0" required />
+        </div>
+        <div >
+          <input type="button" class="btn btn-primary" id="addTableBtn" onclick="submitAddTableForm()" data-bs-dismiss="modal" value="Add new table!" />
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="editTableFormModal" tabindex="-1" aria-labelledby="editTableFormModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Edit table form</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">        
+          <form class="formFont" id="editTableForm">
+              <div>
+                <label for="Name" class="form-label">Table number: </label>
+                <input type="number" class="form-control" name="Number" id="Number" value="0" required />
+              </div>
+              <span >
+                <input type="button" class="btn btn-primary" id="confirmBtn" data-bs-dismiss="modal" value="Confirm" />
+              </span>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+    <template id="addCustomer-template">
+        <img width="40em" height="40em" class="imageOpacity" src="./unorder.png" />
+    </template>
+    
+    <template id="customer-template">
+        <img width="40em" height="40em" src="./customer.png" />
+    </template>
+  
+    <!-- Modal -->
+    <div class="modal fade" id="addDishFormModal" tabindex="-1" aria-labelledby="addDishFormModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Add dish form</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">       
+            <form class="formFont" id="addDishForm">
+                <p>
+                  <label for="Image" class="form-label">Enter image path: </label>
+                  <input type="text" class="form-control" name="Image" id="Image" required />
+                </p>
+                <div>
+                  <label for="Name" class="form-label">Enter name: </label>
+                  <input type="text" class="form-control" name="Name" id="Name" required />
+                </div>
+                <div>
+                  <label for="Description" class="form-label">Enter description: </label>
+                  <input type="text" class="form-control" name="Description" id="Description" required />
+                </div>
+                <div>
+                  <label for="Price" class="form-label">Enter price: </label>
+                  <input type="text" class="form-control" name="Price" id="Price" required />
+                </div>
+                <div >
+                  <input type="button" class="btn btn-primary" data-bs-dismiss="modal" id="addDishBtn" onclick="submitAddDishForm()" value="Add new dish!" />
+                </div>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+          
+    <!-- Modal -->
+    <div class="modal fade" id="confirmDeleteFormModal" tabindex="-1" aria-labelledby="confirmDeleteFormModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm delete form</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">        
+            <form class="formFont" id="confirmDeleteForm">
+              <input type="button" class="btn btn-primary" id="confirmBtn" data-bs-dismiss="modal" value="Confirm" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Modal -->
+    <div class="modal fade" id="editDishFormModal" tabindex="-1" aria-labelledby="editDishFormModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit dish form</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">       
+            <form class="formFont" id="editDishForm">
+                <div class="mb-3">
+                  <label for="Image" class="form-label">Enter image path: </label>
+                  <input type="text" class="form-control" name="Image" id="Image" required />
+                </div>
+                <div>
+                  <label for="Name" class="form-label">Enter name: </label>
+                  <input type="text" class="form-control" name="Name" id="Name" required />
+                </div>
+                <div>
+                  <label for="Description" class="form-label">Enter description: </label>
+                  <input type="text" class="form-control" name="Description" id="Description" required />
+                </div>
+                <div>
+                  <label for="Price" class="form-label">Enter price: </label>
+                  <input type="text" class="form-control" name="Price" id="Price" required />
+                </div>
+                <span >
+                  <input type="button" class="btn btn-primary" data-bs-dismiss="modal" id="confirmBtn" value="Confirm" />
+                </span>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+            
+    <template id="dishCard-template">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">  
+            <div>
+              <div class="overlaycontainer">
+                <img class="card-img-top" id="dishImg" />
+                <button class="buttonSmall buttonRound right overlaytop" data-bs-toggle="modal" data-bs-target="#confirmDeleteFormModal" id="deleteBtn">
+                  <img width="35em" height="35em" src="./delete.png" />  
+                </button>  
+              </div>
+              
+              <button class="buttonSmall buttonRound right" data-bs-toggle="modal" data-bs-target="#editDishFormModal" id="editBtn">
+                <img width="35em" height="35em" src="./edit.png" />  
+              </button>  
+              
+              <h5 class="card-title" id="dishName"></h5>
+              <p class="card-text" id="dishDescription"></p>
+           
+              <div>
+                  <span >Price: $</span>
+                  <span id="dishPrice"></span>
+              </div>
+            </div>  
+          </div>
+        </div>
+    </template>
+
+
+    <template id="customerCard-template">
+        <div class="border">
+            <div>
+                <span >FirstName: </span>
+                <span id="customerFirstName"></span>
+            </div>
+            <div>
+                <span >LastName: </span>
+                <span id="customerLastName"></span>
+            </div>
+            <div>
+                <span >Email: </span>
+                <span id="customerEmail"></span>
+            </div>
+        </div>
+    </template>
+    
+    <template id="customerOrderCard-template">
+      <div class="border">
+        <div>
+            <img class="card-image" style="width: 10em; height: 10em;" id="orderDishImage"/>
+        </div>
+          
+        <div>
+          <span >Dish name: </span>
+          <span id="orderDishName"></span>
+      </div>
+        </span>
+      </div>
+  </template>
+
+
+
+    <template id="orderCard-template">
+      <div class="card" style="width: 120em; padding: 1rem;">
+        <div class="overlaycontainer">
+          <h5 class="card-title" >Table number: <span class="card-title" id="orderTableNumber"></span></h5>          
+          <div class="overlaytop" style="margin-top: -0.5rem; margin-right: -0.5rem;">            
+            <button type="button" class="buttonSmall buttonRound right" data-bs-toggle="modal" data-bs-target="#confirmDeleteFormModal" id="deleteBtn">
+              <img width="35em" height="35em" src="./delete.png" />  
+            </button>    
+          </div>          
+          <ul class="horizontul" id="orderDishList"></ul>
+        </div>
+      </div>
+  </template>
+
+  
+  <template id="orderDishCard-template">
+    <div class="card" style="width: 18em; margin-right: 1rem;">
+      <span>        
+        <div>
+          <img class="card-img-top" id="orderDishImage"/>
+        </div> 
+        <div class="card-body">     
+          <h5 class="card-title">
+              <span id="orderDishName"></span>
+          </h5>
+        </div>  
+      </span>
+    </div>
+</template>
+
+    <template id="tableItem-template">
+        <div class="card" style="width: 17rem; margin: 0.5rem;">
+          <div class="card-body">
+            <div class="overlaycontainer">
+              <h5 class="card-title" id="tableNumber">Table number:</h5>              
+              <div class="btn-group overlaytop" role="group" style="right: -0.75rem; top: -0.75rem;">              
+                <button type="button" class="buttonSmall buttonRound center" data-bs-toggle="modal" data-bs-target="#editTableFormModal" id="editBtn">
+                  <img width="35em" height="35em" src="./edit.png" />  
+                </button>          
+                <button type="button" class="buttonSmall buttonRound  right" data-bs-toggle="modal" data-bs-target="#confirmDeleteFormModal" id="deleteBtn">
+                  <img width="35em" height="35em" src="./delete.png" />  
+                </button> 
+              </div>
+            </div>
+           
+              <div class="radial list size9 clear" id="simpleList" style="margin-top: 6rem; margin-bottom: 6.5rem; margin-left: 2rem;">
+                  <span class="radialPivot size9">
+                      <img width="120rem" height="120rem" src="./Table.png"/>     
+                  </span>
+                  <ul class="radialList clock radius6 f2" aria-label="menu items" id="customerList"/>
+              </div>
+          </div>
+        </div>
+    </template>
+
+    <dialog id="dialog1">
+        <div>
+            <div id="dialogTitle"/>
+            <div id="dialogContainer"/>
+        </div>
+    </dialog>
+
+    <dialog id="dialog2">
+        <div>
+            <div id="dialogTitle2"/>
+            <div id="dialogContainer2"/>
+        </div>
+    </dialog>
+
+    <ul class="tabPanel nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="table-tab" data-bs-toggle="tab" data-bs-target="#table-tab-pane" type="button" role="tab" aria-controls="table-tab-pane" aria-selected="true">Tables</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="orders-tab" data-bs-toggle="tab" data-bs-target="#orders-tab-pane" type="button" role="tab" aria-controls="orders-tab-pane" aria-selected="false">Orders</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="menu-tab" data-bs-toggle="tab" data-bs-target="#menu-tab-pane" type="button" role="tab" aria-controls="menu-tab-pane" aria-selected="false">Menu</button>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="table-tab-pane" role="tabpanel" aria-labelledby="table-tab" tabindex="0">
+        <div class="tabContent">
+          <button class="btn btn-primary btn-sm" style="margin-bottom: 0.5em;" data-bs-toggle="modal" data-bs-target="#addTableFormModal" >Add new tables</button>
+          <div class="container" id="tablesList"></div>
+        </div>        
+      </div>
+      <div class="tab-pane fade" id="orders-tab-pane" role="tabpanel" aria-labelledby="orders-tab" tabindex="0">
+        <div class="tabContent">
+          <div class="container" id="ordersList"></div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="menu-tab-pane" role="tabpanel" aria-labelledby="menu-tab" tabindex="0">
+        <div class="tabContent">
+          <button class="btn btn-primary btn-sm" style="margin-bottom: 0.5em;" data-bs-toggle="modal" data-bs-target="#addDishFormModal">Add new dish</button>
+          <div class="container" id="dishesList"></div>
+        </div>
+      </div>
+    
+      <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+          crossorigin="anonymous"></script>
+    
+    <script src="./tables.js"></script> 
+    <script src="./dishes.js"></script> 
+    <script src="./managment.js"></script> 
+ 
   </body>
 </html>
