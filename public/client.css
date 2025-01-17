@@ -1,5 +1,5 @@
 :root {
-  --navbar-height: 10%;
+  --navbar-height: 15%;
   --background-main: rgba(12, 96, 138, 0.95);
   --foreground-main: white;
   --border-slider: transparent;
@@ -39,18 +39,6 @@
   transition: 0.4s;
 }
 
-/* .featureSlider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: var(--box-slider);
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-} */
-
 input:checked + .featureSlider {
   background-color: var(--background-slider);
 }
@@ -63,30 +51,33 @@ input:checked + .featureSlider:before {
 
 /* Navbar components CSS */
 
-.navbar {
+.navbar-top {
   margin-top: -0.5em;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: var(--background-main);
-  position: sticky;
-  top: 0;
-  width: 100%;
+  overflow: hidden;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
   height: var(--navbar-height);
 }
 
- .navbar > div {
+ .navbar-top > div {
   margin: 0.5em;
   display: flex;
   align-items: center;
 }
 
-/*
-.navbar > div > div {
-  margin-left: 0.25em;
-  font-size: 2.5em;
-  color: var(--foreground-main);
-} */
+.order-menu-parent{
+  overflow: hidden;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 5rem; /* Position the navbar at the top of the page */
+  right: 0rem;
+  width: 24em; /* Full width */
+  height: 0em;
+}
 
 .order-menu {
   list-style: none;
@@ -97,12 +88,16 @@ input:checked + .featureSlider:before {
   background-color: var(--background-main);
   border: var(--border-feature-box) solid 0.008em;
   position: absolute;
-  top: 5em;
+  top: 0em;
   right: 0.5em;
 }
 
 .order-menu.active {
   display: flex;
+}
+
+.order-menu-parent.active {
+  height: 34em;
 }
 
 .image-scale {
@@ -128,6 +123,7 @@ input:checked + .featureSlider:before {
 }
 
 .container {
+  margin-top: 5.5rem;
   display: flex;
   flex-wrap: wrap;
 }
@@ -149,9 +145,6 @@ input:checked + .featureSlider:before {
 }
 
 #checkoutBtn {
-  /* background-color:transparent; */
-  /* border: transparent; */
-
   margin-left: 1em;
   margin-right: 1em;
   margin-bottom: 1em;
@@ -215,19 +208,3 @@ input:checked + .featureSlider:before {
   margin-left: 1em;
 }
 
-
-@media (min-width: 1130px) {
-  /* .order-menu {
-    display: flex;
-    flex-direction: row;
-    justify-content: end;
-    position: static;
-    background-color: transparent;
-    border: none;
-    gap: 15px;
-  } */
-
-  /* .featureSwitch {
-    display: none;
-  } */
-}

@@ -14,7 +14,7 @@
 
 
     <template id="dishCard-template">
-        <div class="card" style="width: 22rem;">
+        <div class="card" style="width: 22rem; margin: 0.2rem;">
             <div class="overlaycontainer">
                 <img loading="lazy" id="dishImg" class="card-img-top" alt="card-image"/>
                 <div class="overlaytop">
@@ -79,36 +79,35 @@
         </div>
     </div>
 
-    <div>
+
+    <div id="dishesList" class="container" style="padding: 1rem;">
+    </div>
+    <div class="navbar-top">
         <div>
-            <div class="navbar">
-                <div>
-                    <div style="color: white; font-size: 2em;">Local restaurant</div>
-                </div>
-                <div>     
-                    <label class="featureSwitch">
-                        <input type="checkbox" class="navbar-toggle" id="navbarToggle">
-                        <span class="featureSlider">                        
-                            <div class="overlaycontainer">
-                                <div class="overlaytop" style="left: 0.7em; top: 0.6em;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="3.5em" height="3.5em" fill="white" viewBox="0 0 16 16">
-                                        <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
-                                    </svg>
-                                </div>
-                                <div class="overlaytop" style="top: 0em; right: -0.5em;">
-                                    <div id="orderCount" style="display: none;" class="circle"></div>
-                                </div>
-                            </div>
-                        </span>
-                    </label>   
-                    <div> 
-                    </div>    
-                </div>
-            </div>
-        </div>  
-        <div id="dishesList" class="container" style="padding: 1rem;">
+            <div style="color: white; font-size: 2em;">Local restaurant</div>
         </div>
-        
+        <div>     
+            <label class="featureSwitch">
+                <input type="checkbox" class="navbar-toggle" id="navbarToggle">
+                <span class="featureSlider">                        
+                    <div class="overlaycontainer">
+                        <div class="overlaytop" style="left: 0.7em; top: 0.6em;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="3.5em" height="3.5em" fill="white" viewBox="0 0 16 16">
+                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                            </svg>
+                        </div>
+                        <div class="overlaytop" style="top: 0em; right: -0.5em;">
+                            <div id="orderCount" style="display: none;" class="circle"></div>
+                        </div>
+                    </div>
+                </span>
+            </label>   
+            <div> 
+            </div>    
+        </div>
+    </div> 
+
+    <div class="order-menu-parent" id="orderMenuParent">
         <div class="order-menu" id="orderMenu">  
             <div class="interaction-box">            
                 <ul id="orderList"></ul>

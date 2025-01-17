@@ -73,10 +73,10 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY, {
         orderAmount = await calculatePrice(dishIDList);        
       }    
   
-      console.log(`orderAmount: ${orderAmount}`);
+      orderAmount = orderAmount * 100;
   
       paymentIntent = await stripe.paymentIntents.create({
-        currency: 'aud',
+        currency: 'usd',
         amount: orderAmount,
         automatic_payment_methods: { enabled: true }
       });

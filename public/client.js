@@ -102,8 +102,11 @@ const navbarToggle = document.getElementById("navbarToggle");
   
 const orderMenu = document.getElementById("orderMenu");
 
+const orderMenuParent = document.getElementById("orderMenuParent");
+
 navbarToggle.addEventListener("click", () => {
   orderMenu.classList.toggle("active");
+  orderMenuParent.classList.toggle("active");
 });
 
 async function processCheckout(){
